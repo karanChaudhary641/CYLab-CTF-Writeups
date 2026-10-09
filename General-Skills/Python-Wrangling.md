@@ -12,17 +12,23 @@ First, I inspected the files provided in the challenge workspace using basic Lin
 * `flag.txt.en`: The encrypted payload.
 * `pw.txt`: The text file containing the clearance password.
 
-### 2. Execution & Script Interactions
-Running the script without arguments revealed its usage documentation:
-```bash
-python3 ende.py
-```
-*Output indicated that `-e` encrypts and `-d` decrypts.*
+### 2. Execution & Terminal Interaction
+I leveraged the terminal to pull the challenge resources, check the script requirements, and execute the decryption payload. Here is the exact command sequence executed in the workspace shell:
 
-I executed the decryption sequence by targeting the ciphertext and feeding the contents of `pw.txt` when prompted:
 ```bash
+# Downloaded the challenge files directly into the workspace terminal
+wget https://picoctf.net
+wget https://picoctf.net
+wget https://picoctf.net
+
+# Viewed the contents of the password file to get the decryption key
+cat pw.txt
+
+# Executed the decryption script using the terminal flag '-d' 
+# Passed the password string into the prompt when requested
 python3 ende.py -d flag.txt.en
 ```
+*Result: The terminal successfully decrypted the cipher block and printed out the raw flag token string.*
 
 ## Key Takeaways
 * Mastered passing conditional flags (`-d`) into python binaries directly via the shell.
