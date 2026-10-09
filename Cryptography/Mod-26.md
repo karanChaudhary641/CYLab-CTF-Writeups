@@ -15,8 +15,15 @@ Mathematically, the transformation for any character index \(x\) is defined as:
 Because 13 is exactly half of the 26-letter English alphabet, the cipher is symmetric. Applying the exact same algorithm a second time decrypts the text:
 \[D(x) = (x + 13 + 13) \pmod{26} = x \pmod{26}\]
 
-### 2. Decryption Routine
-I passed the obfuscated flag string through a ROT13 rotation mechanism. Every alphabetic character shifted by 13 positions (e.g., `A` \(\leftrightarrow\) `N`, `B` \(\leftrightarrow\) `O`), while special characters and underscores remained intact to yield the final token.
+### 2. Decryption Sequence via Terminal
+Instead of relying on web-based decoding tools, I solved this challenge purely inside the terminal using a single line of bash shell scripting to rotate the characters:
+
+```bash
+# Echoed the obfuscated flag string and piped it directly into the 'tr' (translate) utility
+# This maps the alphabetical indices forward by 13 positions (A-Z to N-ZA-M)
+echo "cvpbPGS{rkgraqrq_ebg13_rapelkgvba}" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
+*Result: The terminal evaluated the stream configuration and immediately outputted the plaintext flag string.*.
 
 ## Key Takeaways
 * Solidified understanding of symmetric substitution ciphers.
